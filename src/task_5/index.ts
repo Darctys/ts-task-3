@@ -9,7 +9,6 @@
  */
 import {IContract} from "../task_4";
 import {ISecureVaultRequisites, Vault} from "../task_3";
-import {CurrencyType} from "../task_1";
 
 export class BankController{
     private static _controller: BankController;
@@ -33,38 +32,15 @@ export class BankController{
 
         if(sender !== undefined && receiver !== undefined) {
             contract.signAndTransfer()
-            switch (contract.value.type) {
-                case CurrencyType.Material:
-                    try {
-                        sender.transfer(contract.value, receiver)
-                        contract.closeTransfer();
-                    } catch (e) {
-                        contract.rejectTransfer();
-                    }
-                    break;
-                case CurrencyType.Crypt:
-                    try {
-                        setTimeout(() => {
-                            sender.transfer(contract.value, receiver)
-                            contract.closeTransfer();
-                        }, 3000)
-                    } catch (e) {
-                        contract.rejectTransfer();
-                    }
-                    break;
-                case CurrencyType.Metal:
-                    try {
-                        setTimeout(() => {
-                            sender.transfer(contract.value, receiver)
-                            contract.closeTransfer();
-                        }, 6000)
-                    } catch (e) {
-                        contract.rejectTransfer();
-                    }
-                    break;
-                default:
-                    contract.rejectTransfer();
+            try {
+                sender.transfer(contract.value, receiver)
+                contract.closeTransfer;
+            } catch (e) {
+                contract.rejectTransfer();
             }
+        }else {
+            contract.rejectTransfer();
+            throw new Error();
         }
     }
 }
