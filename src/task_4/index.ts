@@ -16,7 +16,7 @@ export class SmartContract implements IContract{
     public value: Currency;
     public receiver: ISecureVaultRequisites;
     public sender: ISecureVaultRequisites;
-
+    
     public closeTransfer(): void {
         setTimeout(() => {
             this.state = ContractState.close;

@@ -10,6 +10,7 @@
 import {IContract} from "../task_4";
 import {ISecureVaultRequisites, Vault} from "../task_3";
 
+
 export class BankController{
     private static _controller: BankController;
     private vaultStore: Vault[] = [];
